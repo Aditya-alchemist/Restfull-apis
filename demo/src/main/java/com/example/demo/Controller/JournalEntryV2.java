@@ -2,6 +2,8 @@ package com.example.demo.Controller;
 
 
 import com.example.demo.Entity.JournalEntry;
+import com.example.demo.Service.JavaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,27 +13,28 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/journal")
-public class JournalEntryController {
+public class JournalEntryV2 {
 
-
-    private  Map<Long,JournalEntry> journalEntryMap = new HashMap();
+@Autowired
+private JavaService javaService;
 
     @GetMapping
     public List<JournalEntry> getAll() {
-   return new ArrayList<>(journalEntryMap.values());
+        return null;
     }
 
     @PostMapping
     public  boolean CreateEntry(@RequestBody JournalEntry journalEntry){
-     journalEntryMap.put(journalEntry.getId(),journalEntry);
-     return true;
+        javaService.saveEntry(journalEntry);
+        return true;
 
     }
 
     @GetMapping("id/{myid}")
     public JournalEntry getAllId(@PathVariable Long myid) {
-        return journalEntryMap.get(myid);
+        return null;
     }
+
 
 
 }
