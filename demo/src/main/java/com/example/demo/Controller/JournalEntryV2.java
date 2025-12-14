@@ -20,7 +20,7 @@ private JavaService javaService;
 
     @GetMapping
     public List<JournalEntry> getAll() {
-        return null;
+        return javaService.getAll();
     }
 
     @PostMapping
